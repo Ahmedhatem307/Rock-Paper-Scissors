@@ -1,3 +1,7 @@
+
+const container = document.querySelector("#container");
+const result = document.createElement("div");
+
 function getComputerChoice(){
     number = Math.floor(Math.random()*3);
     if(number == 0)
@@ -14,34 +18,37 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice){
-
+    
     if(humanChoice == computerChoice){
-        console.log("Draw!");
+        result.textContent ="Draw!";
     }
     else if(humanChoice == "rock" && computerChoice == "paper"){
-        console.log("You lose! Paper beats Rock")
+
+        result.textContent = "You lose! Paper beats Rock";
+        
         computerScore++;
     }
     else if(humanChoice == "paper" && computerChoice == "scissors"){
-        console.log("You lose! Scissors beats Paper")
+        result.textContent ="You lose! Scissors beats Paper";
         computerScore++;
     }
     else if(humanChoice == "scissors" && computerChoice == "rock"){
-        console.log("You lose! Rock beats scissors")
+        result.textContent ="You lose! Rock beats scissors";
         computerScore++;
     }
     else if(humanChoice == "rock" && computerChoice == "scissors"){
-        console.log("You Win! rock beats scissors")
+        result.textContent ="You Win! rock beats scissors";
         humanScore++;
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
-        console.log("You Win! paper beats rock")
+        result.textContent ="You Win! paper beats rock";
         humanScore++;
     }
     else if(humanChoice == "scissors" && computerChoice == "paper"){
-        console.log("You Win! scissors beats paper")
+        result.textContent ="You Win! scissors beats paper";
         humanScore++;
     }
+    container.appendChild(result);
 }
 
 function playGame(){
@@ -58,9 +65,7 @@ let humanScore = 0, computerScore = 0;
 
 //playGame()
 
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
+
 
 
 
