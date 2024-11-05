@@ -1,6 +1,7 @@
-
 const container = document.querySelector("#container");
 const result = document.createElement("div");
+const hScore = document.createElement("div");
+const cScore = document.createElement("div");
 
 function getComputerChoice(){
     number = Math.floor(Math.random()*3);
@@ -18,55 +19,67 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice){
+    if(humanScore < 5 && computerScore < 5){
     
-    if(humanChoice == computerChoice){
-        result.textContent ="Draw!";
-    }
-    else if(humanChoice == "rock" && computerChoice == "paper"){
+        if(humanChoice == computerChoice){
+            result.textContent ="Draw!";
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+        else if(humanChoice == "rock" && computerChoice == "paper"){
+            result.textContent = "You lose! Paper beats Rock";
+            computerScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+        else if(humanChoice == "paper" && computerChoice == "scissors"){
+            result.textContent ="You lose! Scissors beats Paper";
 
-        result.textContent = "You lose! Paper beats Rock";
-        
-        computerScore++;
-    }
-    else if(humanChoice == "paper" && computerChoice == "scissors"){
-        result.textContent ="You lose! Scissors beats Paper";
-        computerScore++;
-    }
-    else if(humanChoice == "scissors" && computerChoice == "rock"){
-        result.textContent ="You lose! Rock beats scissors";
-        computerScore++;
-    }
-    else if(humanChoice == "rock" && computerChoice == "scissors"){
-        result.textContent ="You Win! rock beats scissors";
-        humanScore++;
-    }
-    else if(humanChoice == "paper" && computerChoice == "rock"){
-        result.textContent ="You Win! paper beats rock";
-        humanScore++;
-    }
-    else if(humanChoice == "scissors" && computerChoice == "paper"){
-        result.textContent ="You Win! scissors beats paper";
-        humanScore++;
-    }
-    container.appendChild(result);
+            computerScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;;
+        }
+        else if(humanChoice == "scissors" && computerChoice == "rock"){
+            result.textContent ="You lose! Rock beats scissors";
+            computerScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+        else if(humanChoice == "rock" && computerChoice == "scissors"){
+            result.textContent ="You Win! rock beats scissors";
+            humanScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+        else if(humanChoice == "paper" && computerChoice == "rock"){
+            result.textContent ="You Win! paper beats rock";
+            humanScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+        else if(humanChoice == "scissors" && computerChoice == "paper"){
+            result.textContent ="You Win! scissors beats paper";
+            humanScore++;
+            hScore.textContent = "Your Score: " + humanScore;
+            cScore.textContent = "Computer's Score: "+ computerScore;
+        }
+
+        container.appendChild(result);
+        container.appendChild(hScore);
+        container.appendChild(cScore);
 }
-
-function playGame(){
-    
-    if(humanScore > computerScore)
-        console.log("You have won the game!");
-    else if(computerScore > humanScore)
-        console.log("You have lost the game!");
-    else
-    console.log("It's a draw!");
+else{
+    if(humanScore == 5){
+        container.removeChild(hScore);
+        container.removeChild(cScore);
+        result.textContent = "YOU HAVE WON THE GAME!";
+    }
+    else{
+        container.removeChild(hScore);
+        container.removeChild(cScore);
+        result.textContent = "YOU HAVE LOST THE GAME!";
+    }
+}
 }
 
 let humanScore = 0, computerScore = 0;
-
-//playGame()
-
-
-
-
-
-
